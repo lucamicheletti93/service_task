@@ -21,7 +21,7 @@ AliESDEvent *esdE = new AliESDEvent();
   vtx->SetTitle("VertexTracks");
   esdE->SetPrimaryVertexTracks(vtx);
   AliAnalysisManager *mgr =     AliAnalysisManager::GetAnalysisManager();
-  AliDummyHandler *dumH =   static_cast<AliDummyHandler*>mgr->GetInputEventHandler();
+  AliDummyHandler *dumH =   static_cast<AliDummyHandler*>(mgr->GetInputEventHandler());
   dumH->SetEvent(esdE);
   // esdE->GetList()->ls();
   }
