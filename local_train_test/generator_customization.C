@@ -1,27 +1,14 @@
-///
-//#include <functional>
-///
-
-//Bool_t myTrigger(const AliStack &stack)
-//{
-	//return kTRUE;
-//}
-
-//Int_t myTrigger()
-//{
-	//return 999;
-//}
-
-//Int_t myTrigger(Int_t num){
-	//printf("TRIGGER SET EXTERNALLY! \n");
-	//return num + 999;
-//}
-
-void myTrigger(AliStack *stack)
+Bool_t myTrigger(AliStack *stack)
 {
 	printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 	printf("TRIGGER SETTATO ESTERNAMENTE \n");
-	printf("N Tracks = %i \n",stack->GetNtrack());
+	Int_t nTracks  = stack->GetNtrack();
+  printf("n Tracks = %i \n",nTracks);
+  if(nTracks>100){return kTRUE;}
+  else{
+    printf("n Tracks < %i --> EVENT DISCARDED \n",100);
+    return kFALSE;
+  }
 	printf("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 }
 
@@ -31,23 +18,10 @@ void generator_customization(AliGenerator* generator)
   //gROOT->LoadMacro("/home/luca/GITHUB/service_task/local_train_test/myTrigger.C+");
   /// myCode
 
-
-	//void (*foo)(void);
-	//foo = &myTrigger;
 	((AliGenExtExec*) generator)->SetPathScript("$ALICE_PHYSICS/PWG/MCLEGO/JEWEL/gen_jewel.sh");
-	((AliGenExtFile*) generator)->SetMultiplicityTrigger(kTRUE);
+	//((AliGenExtFile*) generator)->SetMultiplicityTrigger(100);
+	//((AliGenExtFile*) generator)->SetPtTrigger(5.);
 
-	//((AliGenExtFile*) generator)->SetUserTrigger(&myTrigger);
-
-	std::function<void(AliStack*)> f_myTrigger = myTrigger;
-	((AliGenExtFile*) generator)->SetUserTrigger(f_myTrigger);
-
-
-  //std::function<void()> fn = &AliGenExtExec::myTrigger;
-	//((AliGenExtFile*) generator)->SetUserTrigger(fn);
-
-	//((AliGenExtFile*) generator)->SetUserTrigger(&myTrigger);
-
-	//((AliGenExtFile*) generator)->SetUserTrigger(&myTrigger);																						// Standard function
-	//generator->SetUserTrigger([](const AliStack &stack){ return kTRUE; });														// Lambda function
+	std::function<Bool_t(AliStack*)> funcMyTrigger = myTrigger;
+	((AliGenExtFile*) generator)->SetUserTrigger(funcMyTrigger);
 }
