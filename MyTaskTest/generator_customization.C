@@ -6,7 +6,7 @@ Bool_t userTrigger(AliStack *stack)
 	Int_t nTracks  = stack->GetNtrack();
   printf("n Tracks = %i \n",nTracks);
 	printf("____________________________\n");
-  if(nTracks>100){return kTRUE;}
+  if(nTracks>0){return kTRUE;}
   else{return kFALSE;}
 
 	/*
@@ -40,6 +40,24 @@ void generator_customization(AliGenerator* generator)
 	//((AliGenExtFile*) generator)->SetMultiplicityTrigger(100);
 	//((AliGenExtFile*) generator)->SetPtTrigger(5.);
 
-	std::function<Bool_t(AliStack*)> funcUserTrigger = userTrigger;
-	((AliGenExtFile*) generator)->SetUserTrigger(funcUserTrigger);
+	// Implementation with the standard std::function
+	//std::function<Bool_t(AliStack*)> funcUserTrigger = userTrigger;
+	//((AliGenExtFile*) generator)->SetUserTrigger(funcUserTrigger);
+
+
+	Int_t nTracks_cut = 100;
+
+	// Implementation with lambda function - Long
+  //std::function<Bool_t(AliStack*)> funcUserTrigger = [nTracks_cut](AliStack *stack) -> Bool_t {
+    //Int_t nTracks = stack->GetNtrack();
+    //printf("n Tracks = %i \n",nTracks);
+    //if(nTracks> nTracks_cut ){return kTRUE;}
+    //else{return kFALSE;}
+  //};
+
+	// Implementation with lambda function Short
+	std::function<Bool_t(AliStack*)> funcUserTrigger = [nTracks_cut](AliStack *stack) -> Bool_t { return stack->GetNtrack() > nTracks_cut; };
+
+
+  ((AliGenExtFile*) generator)->SetUserTrigger(funcUserTrigger);
 }
