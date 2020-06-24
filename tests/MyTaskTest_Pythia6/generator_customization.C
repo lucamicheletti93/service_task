@@ -17,10 +17,10 @@ void generator_customization(AliGenerator* generator)
 {
   ///---------------------------------------------------------------------------
   // Trigger : standard c++ function
-  std::function<Bool_t(AliStack*)> funcUserTrigger = userPtTrigger;
+  //std::function<Bool_t(AliStack*)> funcUserTrigger = userPtTrigger;
   // Trigger : lambda expression
-  //Int_t nTracks_cut = 50;
-  //std::function<Bool_t(AliStack*)> funcUserTrigger = [nTracks_cut](AliStack *stack) -> Bool_t { return stack->GetNtrack() > nTracks_cut; };
+  Int_t nTracks_cut = 50;
+  std::function<Bool_t(AliStack*)> funcUserTrigger = [nTracks_cut](AliStack *stack) -> Bool_t { return stack->GetNtrack() > nTracks_cut; };
 
   generator->SetUserTrigger(funcUserTrigger);
   ///---------------------------------------------------------------------------
