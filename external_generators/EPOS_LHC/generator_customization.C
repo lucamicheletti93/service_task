@@ -11,9 +11,8 @@ Bool_t userTrigger(AliStack *stack)
 }
 
 void generator_customization(AliGenerator* generator){
-	((AliGenExtExec*) generator)->SetPathScript("$ALICE_PHYSICS/PWG/MCLEGO/CRMC/gen_eposlhc.sh");
-	// Trigger : function ptr
-  	Bool_t (*funcUserTrigger)(AliStack*) = userTrigger;
-  	generator->SetUserTrigger(funcUserTrigger);
-
+		((AliGenExtExec*) generator)->SetPathScript("$ALICE_PHYSICS/PWG/MCLEGO/CRMC/gen_eposlhc.sh");
+		// User trigger
+		//Bool_t (*funcUserTrigger)(AliStack*) = userTrigger;
+  	//generator->SetUserTrigger(funcUserTrigger);
 }
