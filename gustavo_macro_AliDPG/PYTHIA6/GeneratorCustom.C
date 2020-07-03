@@ -42,8 +42,8 @@ AliGenerator * GeneratorCustom()
   AliGenerator * generator = GeneratorPythia6();
 
   // User trigger
-  Bool_t (*funcUserTrigger)(AliStack*) = UserTrigger;
-  generator->SetUserTrigger(funcUserTrigger);
+  //Bool_t (*funcUserTrigger)(AliStack*) = UserTrigger;
+  //generator->SetUserTrigger(funcUserTrigger);
   
   return generator;
 }
