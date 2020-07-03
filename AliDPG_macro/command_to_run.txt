@@ -1,0 +1,1 @@
+$ALIDPG_ROOT/bin/aliroot_dpgsim.sh --run 225307 --mode sim --simulation GeneratorOnly --uid 1 --nevents 50  --generator Custom
