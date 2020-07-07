@@ -9,8 +9,8 @@
 
 //------
 /// Implementation of example user event MC trigger.
-/// Given a pointer to  generated particle stack, 
-/// apply an event selection,  in this example 
+/// Given a pointer to  generated particle stack,
+/// apply an event selection,  in this example
 /// just the simple counter of generated particles
 //-------
 Bool_t UserTrigger(AliStack *stack)
@@ -20,7 +20,7 @@ Bool_t UserTrigger(AliStack *stack)
 
 	Int_t nTracks  = stack->GetNtrack();
   printf("n Tracks = %i \n",nTracks);
-  
+
   if ( nTracks > 120 )
   {
     printf("\t accepted!\n");
@@ -40,10 +40,10 @@ Bool_t UserTrigger(AliStack *stack)
 AliGenerator * GeneratorCustom()
 {
   AliGenerator * generator = GeneratorEPOSLHC();
-	
+
   // User trigger
   Bool_t (*funcUserTrigger)(AliStack*) = UserTrigger;
   generator->SetUserTrigger(funcUserTrigger);
-  
+
   return generator;
 }
