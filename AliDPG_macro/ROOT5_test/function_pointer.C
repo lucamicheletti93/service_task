@@ -1,0 +1,15 @@
+#include "MyClass.h"
+
+Int_t function(Int_t x){
+	x = 1;
+	if(x == 0){return kTRUE;}
+	else return kFALSE;
+}
+
+void function_pointer(){
+	Int_t (*funcPtr)(Int_t) = function;
+	MyClass *myclass = new MyClass();
+	myclass -> SetFuncPtr(funcPtr);
+	myclass -> ApplyFuncPtr();
+	//printf("%i \n",funcPtr(0));
+}
