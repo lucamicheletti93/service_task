@@ -1,0 +1,1 @@
+Command '/cvmfs/alice.cern.ch/x86_64-2.6-gnu-4.1.2/Packages/AliDPG/v5-08-XX-6/MC/dpgsim.sh --run 225307 --mode sim --simulation GeneratorOnly --uid 1 --nevents 50 --generator Custom' exited with error code 2
