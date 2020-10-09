@@ -1,9 +1,9 @@
 ///
-/// \file Pythia6_UserTriggerMultExample.C
-/// \brief Configuration of Pythia6 with external trigger on particle multiplicity
+/// \file EPOS_UserTriggerMultExample.C
+/// \brief Configuration of EPOS with external trigger on particle multiplicity
 ///
-/// Generate PYTHIA6 events, while the event is generated, check that it has
-/// a given amount of generated particles, defined in UserTrigger() function
+/// Generate PYTHIA6 events, while the event is generated, check that it has 
+/// a given amount of generated particles, defined in UserTrigger function
 ///
 /// \author Luca Micheletti <luca.micheletti@cern.ch>
 
@@ -21,7 +21,7 @@ Bool_t UserTrigger(AliStack *stack)
 	Int_t nTracks  = stack->GetNtrack();
   printf("n Tracks = %i \n",nTracks);
 
-  if ( nTracks > 50 )
+  if ( nTracks > 120 )
   {
     printf("\t accepted!\n");
     return kTRUE;
@@ -33,13 +33,13 @@ Bool_t UserTrigger(AliStack *stack)
   }
 }
 
-//------
-/// Main, configure PYTHIA6 events via standard configuration in GeneratorConfig.C
-/// adding an external event trigger defined in UserTrigger()
-//------
+ //------
+ /// Main, configure EPOS events via standard configuration in GeneratorConfig.C
+ /// adding an external event trigger defined in UserTrigger()
+ //------
 AliGenerator * GeneratorCustom()
 {
-  AliGenerator * generator = GeneratorPythia6();
+  AliGenerator * generator = GeneratorEPOSLHC();
 
   // User trigger
   Bool_t (*funcUserTrigger)(AliStack*) = UserTrigger;

@@ -1,1 +1,19 @@
-$ALIDPG_ROOT/bin/aliroot_dpgsim.sh --run 225307 --mode sim --simulation GeneratorOnly --uid 1 --nevents 50  --generator Custom
+--> Before running download an OCDb snapshot with 
+
+$ALIDPG_ROOT/bin/aliroot_dpgsim.sh --run 225307 --mode ocdb --simulation GeneratorOnly --uid 1 --nevents 100  --generator Custom
+
+command to run locally the aliDPG script
+
+$ALIDPG_ROOT/bin/aliroot_dpgsim.sh --run 225307 --mode sim --simulation GeneratorOnly --uid 1 --nevents 100  --generator Custom
+
+
+/cvmfs/alice.cern.ch/bin/alienv enter VO_ALICE@AliPhysics::v5-09-56-01-1,VO_ALICE@AliDPG::v5-09-XX-9
+
+// Version which should work on lxplus
+
+VO_ALICE@AliPhysics::v5-09-54c-01-1
+VO_ALICE@AliRoot::v5-09-54c-1
+VO_ALICE@AliRoot::v5-09-54c_ROOT6-1
+
+
+/cvmfs/alice.cern.ch/bin/alienv enter VO_ALICE@AliPhysics::v5-09-54c-01-1,VO_ALICE@AliDPG::v5-09-XX-1
